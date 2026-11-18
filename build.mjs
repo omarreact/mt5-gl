@@ -59,6 +59,7 @@ function makeRootHomepage(source){let html=patchHomepage(source,"./");html=html.
 
 fs.rmSync(DIST,{recursive:true,force:true});fs.mkdirSync(DIST,{recursive:true});
 for(const dir of ["css","js","fonts","media"])fs.cpSync(path.join(ROOT,dir),path.join(DIST,dir),{recursive:true});
+fs.copyFileSync(path.join(ROOT,"site.webmanifest"),path.join(DIST,"site.webmanifest"));
 const xml=fs.readFileSync(CONTENT_FILE,'utf8');const docs=parseDocuments(xml);
 for(const [title,route] of ROUTES){if(route==='/')continue;const doc=docs.get(title);const nodes=doc&&doc.status!=='unavailable'?extractNodes(doc.body):nodesFromFallback(title);if(!nodes.length)throw new Error(`No content available for ${title}`);const outDir=path.join(DIST,route.replace(/^\//,''));fs.mkdirSync(outDir,{recursive:true});fs.writeFileSync(path.join(outDir,'index.html'),pageHtml(route,title,nodes));}
 const homepageTemplates=[["templates/bitrader-1.html","bitrader/index.html"],["templates/bitrader-2.html","bitrader/index-2.html"],["templates/bitrader-3.html","bitrader/index-3.html"],["templates/digitrader-1.html","digitrader/index.html"],["templates/digitrader-2.html","digitrader/index-demo2.html"],["templates/digitrader-3.html","digitrader/index-demo3.html"]];
