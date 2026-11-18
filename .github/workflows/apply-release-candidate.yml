@@ -50,7 +50,7 @@ jobs:
           rm -rf dist .release
           rm -f .github/workflows/apply-release-candidate.yml
 
-      - name: Commit verified release to main
+      - name: Commit verified release to validation branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -60,4 +60,4 @@ jobs:
             exit 1
           fi
           git commit -m "Complete XML-driven MetaGreyLabel static site"
-          git push origin HEAD:main
+          git push --force origin HEAD:refs/heads/release/metagreylabel-validated-20261119
