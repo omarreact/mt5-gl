@@ -1,3 +1,18 @@
+
+/* Standalone, dependency-free site navigation. */
+(function(){
+ function mglInit(){
+  var header=document.querySelector('.mgl-site-header');
+  if(!header)return;
+  var toggle=header.querySelector('.mgl-nav-toggle'),panels=Array.prototype.slice.call(header.querySelectorAll('.mgl-nav-group'));
+  if(toggle){toggle.addEventListener('click',function(){var next=!header.classList.contains('mgl-nav-open');header.classList.toggle('mgl-nav-open',next);toggle.setAttribute('aria-expanded',String(next));});}
+  panels.forEach(function(panel){panel.addEventListener('toggle',function(){if(panel.open){panels.forEach(function(other){if(other!==panel)other.open=false;});}});});
+  document.addEventListener('click',function(e){if(!header.contains(e.target)){panels.forEach(function(p){p.open=false;});header.classList.remove('mgl-nav-open');if(toggle)toggle.setAttribute('aria-expanded','false');}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){panels.forEach(function(p){p.open=false;});header.classList.remove('mgl-nav-open');if(toggle)toggle.setAttribute('aria-expanded','false');}});
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mglInit);else mglInit();
+})();
+
 (() => {
   document.querySelector('.preloader')?.remove();
   const root = document.documentElement;
