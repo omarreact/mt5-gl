@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Configure Pages
+      - name: Setup Node\n        uses: actions/setup-node@v4\n        with:\n          node-version: 20\n      - name: Generate XML-driven static pages\n        run: node build.mjs\n      - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
