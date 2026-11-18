@@ -88,3 +88,70 @@
 })();
 
 document.querySelectorAll('form').forEach(form => form.addEventListener('submit', event => event.preventDefault()));
+
+
+/* Full-width source visual hero slider. */
+(function(){
+  function initializeHeroSlider(){
+    var slider=document.querySelector('.mgl-hero-slider');
+    if(!slider)return;
+    var slides=Array.from(slider.querySelectorAll('[data-mgl-slide]'));
+    var dots=Array.from(slider.querySelectorAll('[data-mgl-slider-dot]'));
+    var prev=slider.querySelector('[data-mgl-slider-prev]');
+    var next=slider.querySelector('[data-mgl-slider-next]');
+    var progress=slider.querySelector('.mgl-hero-slider__progress span');
+    if(slides.length<2)return;
+    var current=0,timer=null,delay=6500,startX=null;
+    var reduced=typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function restartProgress(){
+      if(!progress||reduced)return;
+      progress.classList.remove('is-running');
+      void progress.offsetWidth;
+      progress.classList.add('is-running');
+    }
+    function schedule(){
+      if(timer)clearTimeout(timer);
+      if(reduced||document.hidden)return;
+      timer=setTimeout(function(){show(current+1,false)},delay);
+      restartProgress();
+    }
+    function show(index,userInitiated){
+      current=(index+slides.length)%slides.length;
+      slides.forEach(function(slide,i){
+        var active=i===current;
+        slide.classList.toggle('is-active',active);
+        slide.setAttribute('aria-hidden',String(!active));
+      });
+      dots.forEach(function(dot,i){
+        var active=i===current;
+        dot.classList.toggle('is-active',active);
+        dot.setAttribute('aria-selected',String(active));
+        dot.tabIndex=active?0:-1;
+      });
+      schedule();
+      if(userInitiated&&typeof slider.focus==='function')slider.focus({preventScroll:true});
+    }
+    if(prev)prev.addEventListener('click',function(){show(current-1,true)});
+    if(next)next.addEventListener('click',function(){show(current+1,true)});
+    dots.forEach(function(dot){dot.addEventListener('click',function(){show(Number(dot.getAttribute('data-mgl-slider-dot'))||0,true)})});
+    slider.addEventListener('keydown',function(event){
+      if(event.key==='ArrowLeft'){event.preventDefault();show(current-1,true)}
+      if(event.key==='ArrowRight'){event.preventDefault();show(current+1,true)}
+    });
+    slider.addEventListener('pointerdown',function(event){if(event.isPrimary)startX=event.clientX});
+    slider.addEventListener('pointerup',function(event){
+      if(startX===null||!event.isPrimary)return;
+      var delta=event.clientX-startX;startX=null;
+      if(Math.abs(delta)>48)show(current+(delta<0?1:-1),true);
+    });
+    slider.addEventListener('pointercancel',function(){startX=null});
+    slider.addEventListener('mouseenter',function(){if(timer)clearTimeout(timer);if(progress)progress.classList.remove('is-running')});
+    slider.addEventListener('mouseleave',schedule);
+    slider.addEventListener('focusin',function(){if(timer)clearTimeout(timer);if(progress)progress.classList.remove('is-running')});
+    slider.addEventListener('focusout',function(event){if(!slider.contains(event.relatedTarget))schedule()});
+    document.addEventListener('visibilitychange',function(){if(document.hidden){if(timer)clearTimeout(timer)}else schedule()});
+    show(0,false);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initializeHeroSlider,{once:true});
+  else initializeHeroSlider();
+})();
