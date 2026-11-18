@@ -788,7 +788,7 @@ function patchHomepage(model, html) {
 }
 
 function writeRoute(route, html){const p=route==="/"?path.join(DIST,"index.html"):path.join(DIST,route.replace(/^\/|\/$/g,""),"index.html");fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,html);}
-function copyStaticAssets(){for(const d of ["css","js","fonts","media"]){const s=path.join(ROOT,d);if(!fs.existsSync(s))throw new Error(`Missing required asset directory: ${d}/`);fs.cpSync(s,path.join(DIST,d),{recursive:true});}const m=path.join(ROOT,"site.webmanifest");if(!fs.existsSync(m))throw new Error("Missing site.webmanifest");fs.copyFileSync(m,path.join(DIST,"site.webmanifest"));}
+function copyStaticAssets(){for(const d of ["css","js","media"]){const s=path.join(ROOT,d);if(!fs.existsSync(s))throw new Error(`Missing required asset directory: ${d}/`);fs.cpSync(s,path.join(DIST,d),{recursive:true});}const m=path.join(ROOT,"site.webmanifest");if(!fs.existsSync(m))throw new Error("Missing site.webmanifest");fs.copyFileSync(m,path.join(DIST,"site.webmanifest"));}
 function generatedRoutes(model){return [...model.pages.map((p)=>p.route),"/insights/"];}
 function outputPathForRoute(route){return route==="/"?path.join(DIST,"index.html"):path.join(DIST,route.replace(/^\/|\/$/g,""),"index.html");}
 
