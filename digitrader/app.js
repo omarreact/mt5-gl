@@ -1,16 +1,34 @@
 
-/* Standalone, dependency-free site navigation. */
+/* Source-style hover on desktop; accessible tap-and-keyboard dropdowns on mobile. */
 (function(){
- function mglInit(){
+ function initializeGlobalNavigation(){
   var header=document.querySelector('.mgl-site-header');
   if(!header)return;
-  var toggle=header.querySelector('.mgl-nav-toggle'),panels=Array.prototype.slice.call(header.querySelectorAll('.mgl-nav-group'));
-  if(toggle){toggle.addEventListener('click',function(){var next=!header.classList.contains('mgl-nav-open');header.classList.toggle('mgl-nav-open',next);toggle.setAttribute('aria-expanded',String(next));});}
-  panels.forEach(function(panel){panel.addEventListener('toggle',function(){if(panel.open){panels.forEach(function(other){if(other!==panel)other.open=false;});}});});
-  document.addEventListener('click',function(e){if(!header.contains(e.target)){panels.forEach(function(p){p.open=false;});header.classList.remove('mgl-nav-open');if(toggle)toggle.setAttribute('aria-expanded','false');}});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){panels.forEach(function(p){p.open=false;});header.classList.remove('mgl-nav-open');if(toggle)toggle.setAttribute('aria-expanded','false');}});
+  var toggle=header.querySelector('.mgl-nav-toggle');
+  var groups=Array.from(header.querySelectorAll('.mgl-nav-group'));
+  var media=typeof window.matchMedia==='function'?window.matchMedia('(min-width:971px) and (hover:hover) and (pointer:fine)'):null;
+  var isHover=function(){return !!(media&&media.matches)};
+  function closeAll(except){groups.forEach(function(g){if(g!==except)g.open=false})}
+  function hideMobile(){header.classList.remove('mgl-nav-open');if(toggle)toggle.setAttribute('aria-expanded','false')}
+  if(toggle)toggle.addEventListener('click',function(){
+   var next=!header.classList.contains('mgl-nav-open');
+   header.classList.toggle('mgl-nav-open',next);
+   toggle.setAttribute('aria-expanded',String(next));
+   if(!next)closeAll();
+  });
+  groups.forEach(function(g){
+   g.addEventListener('pointerenter',function(e){if(isHover()&&e.pointerType!=='touch'){closeAll(g);g.open=true}});
+   g.addEventListener('pointerleave',function(e){if(isHover()&&e.pointerType!=='touch')g.open=false});
+   g.addEventListener('focusin',function(){if(isHover()){closeAll(g);g.open=true}});
+   g.addEventListener('focusout',function(e){if(isHover()&&!g.contains(e.relatedTarget))g.open=false});
+   g.addEventListener('toggle',function(){if(g.open)closeAll(g)});
+  });
+  document.addEventListener('click',function(e){if(!header.contains(e.target)){closeAll();hideMobile()}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeAll();hideMobile();if(toggle&&window.innerWidth<=970)toggle.focus()}});
+  window.addEventListener('resize',function(){if(window.innerWidth>970&&header.classList.contains('mgl-nav-open'))hideMobile()},{passive:true});
  }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mglInit);else mglInit();
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initializeGlobalNavigation,{once:true});
+ else initializeGlobalNavigation();
 })();
 
 /* Consolidated static DigiTrader runtime */
