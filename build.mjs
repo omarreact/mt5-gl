@@ -50,7 +50,118 @@ function pageHtml(route,title,nodes){const {h1,html}=renderBody(nodes),descripti
 
 function patchHomepage(html,prefix){const ctaRoutes={"Contact MetaGreyLabel":"/contact/","Get Started":"/contact/","Get a Quote":"/contact/","Start Now":"/contact/"};return html.replace(/<small>Pages coming soon<\/small>/g,'<small>Explore MetaGreyLabel</small>').replace(/<a([^>]*?)href="#"([^>]*)>([\s\S]*?)<\/a>/g,(full,before,after,inner)=>{const text=stripTags(inner),route=ROUTE_BY_TITLE[text]||ctaRoutes[text]||null;return route?`<a${before}href="${prefix}${route.replace(/^\//,"")}"${after}>${inner}</a>`:full;});}
 
-function rootHeroSlider(){return "<section class=\"mgl-hero-slider\" id=\"home\" aria-label=\"MetaGreyLabel brokerage solutions\" aria-roledescription=\"carousel\" tabindex=\"0\">\n  <div class=\"mgl-hero-slider__track\">\n    <article class=\"mgl-hero-slide mgl-hero-slide--launch is-active\" data-mgl-slide=\"0\" aria-hidden=\"false\">\n      <div class=\"mgl-hero-slide__backdrop\" aria-hidden=\"true\"></div>\n      <div class=\"mgl-hero-slide__inner\">\n        <div class=\"mgl-hero-slide__copy\">\n          <span class=\"mgl-hero-slide__eyebrow\">MetaTrader Grey Label</span>\n          <h1>Launch Your Forex Brokerage <span>in 2 Days</span></h1>\n          <p>Ready MT4/MT5 infrastructure, manager access, liquidity connectivity and connected operations — configured around your brand instead of built from scratch.</p>\n          <div class=\"mgl-hero-slide__actions\">\n            <a class=\"trk-btn trk-btn--primary trk-btn--arrow\" href=\"forex-grey-label/\">Explore Grey Label <span aria-hidden=\"true\">↗</span></a>\n            <a class=\"trk-btn trk-btn--outline22\" href=\"#roadmap\">See the launch process</a>\n          </div>\n          <div class=\"mgl-hero-slide__proof\" aria-label=\"Launch stack\">\n            <span>MT4</span><span>MT5</span><span>CRM</span><span>Liquidity</span>\n          </div>\n        </div>\n        <div class=\"mgl-hero-slide__media\">\n          <div class=\"mgl-hero-visual mgl-hero-visual--launch\">\n            <img class=\"mgl-hero-visual__main\" src=\"media/b-banner-home1-1.png\" alt=\"MetaTrader brokerage launch visual\" loading=\"eager\" decoding=\"async\">\n            <img class=\"mgl-hero-visual__float mgl-hero-visual__float--one\" src=\"media/b-banner-home1-3.png\" alt=\"\" aria-hidden=\"true\">\n            <img class=\"mgl-hero-visual__float mgl-hero-visual__float--two\" src=\"media/b-banner-home1-4.png\" alt=\"\" aria-hidden=\"true\">\n          </div>\n        </div>\n      </div>\n    </article>\n\n    <article class=\"mgl-hero-slide mgl-hero-slide--control\" data-mgl-slide=\"1\" aria-hidden=\"true\">\n      <div class=\"mgl-hero-slide__backdrop\" aria-hidden=\"true\"></div>\n      <div class=\"mgl-hero-slide__inner mgl-hero-slide__inner--reverse\">\n        <div class=\"mgl-hero-slide__copy\">\n          <span class=\"mgl-hero-slide__eyebrow\">Infrastructure + Control</span>\n          <h2>Run Your Own Brand Without Carrying <span>Full-License Overhead</span></h2>\n          <p>Control groups, spreads, symbols, leverage and dealing operations while the heavy server infrastructure stays maintained behind the scenes.</p>\n          <div class=\"mgl-hero-slide__actions\">\n            <a class=\"trk-btn trk-btn--primary\" href=\"forex-grey-label/\">View Grey Label Control</a>\n            <a class=\"trk-btn trk-btn--outline3\" href=\"forex-white-label/vs-grey-label/\">Compare launch models</a>\n          </div>\n          <div class=\"mgl-hero-slide__metrics\">\n            <div><strong>24/5</strong><span>Broker operations</span></div>\n            <div><strong>MT4 + MT5</strong><span>Platform options</span></div>\n            <div><strong>1 stack</strong><span>Connected systems</span></div>\n          </div>\n        </div>\n        <div class=\"mgl-hero-slide__media\">\n          <div class=\"mgl-hero-visual mgl-hero-visual--control\">\n            <img class=\"mgl-hero-visual__main\" src=\"media/b-banner-home2-1.png\" alt=\"Brokerage infrastructure control visual\" loading=\"lazy\" decoding=\"async\">\n          </div>\n        </div>\n      </div>\n    </article>\n\n    <article class=\"mgl-hero-slide mgl-hero-slide--stack\" data-mgl-slide=\"2\" aria-hidden=\"true\">\n      <div class=\"mgl-hero-slide__backdrop\" aria-hidden=\"true\"></div>\n      <div class=\"mgl-hero-slide__inner\">\n        <div class=\"mgl-hero-slide__copy\">\n          <span class=\"mgl-hero-slide__eyebrow\">Connected Brokerage Stack</span>\n          <h2>MT4, MT5, Liquidity &amp; CRM <span>Working Together</span></h2>\n          <p>One launch path for platform, execution, client onboarding, payments and partner operations — designed to remove integration gaps before you go live.</p>\n          <div class=\"mgl-hero-slide__actions\">\n            <a class=\"trk-btn trk-btn--primary\" href=\"forex-broker-turnkey/\">Explore Turnkey Brokerage</a>\n            <a class=\"trk-btn trk-btn--defult\" href=\"forex-crm/\">See CRM &amp; TradeRoom</a>\n          </div>\n          <div class=\"mgl-hero-slide__stack-list\">\n            <span>Platform</span><span>Liquidity</span><span>CRM</span><span>KYC</span><span>Payments</span>\n          </div>\n        </div>\n        <div class=\"mgl-hero-slide__media\">\n          <div class=\"mgl-hero-visual mgl-hero-visual--stack\">\n            <img class=\"mgl-hero-visual__main\" src=\"media/b-banner-home3-1.png\" alt=\"Connected MT4 MT5 liquidity and CRM visual\" loading=\"lazy\" decoding=\"async\">\n            <img class=\"mgl-hero-visual__float mgl-hero-visual__float--three\" src=\"media/b-banner-home3-2.png\" alt=\"\" aria-hidden=\"true\">\n          </div>\n        </div>\n      </div>\n    </article>\n  </div>\n\n  <div class=\"mgl-hero-slider__controls\">\n    <button class=\"mgl-hero-slider__arrow mgl-hero-slider__arrow--prev\" type=\"button\" data-mgl-slider-prev aria-label=\"Previous banner slide\">←</button>\n    <div class=\"mgl-hero-slider__dots\" role=\"tablist\" aria-label=\"Choose banner slide\">\n      <button type=\"button\" class=\"is-active\" data-mgl-slider-dot=\"0\" role=\"tab\" aria-selected=\"true\" aria-label=\"Slide 1\"></button>\n      <button type=\"button\" data-mgl-slider-dot=\"1\" role=\"tab\" aria-selected=\"false\" aria-label=\"Slide 2\"></button>\n      <button type=\"button\" data-mgl-slider-dot=\"2\" role=\"tab\" aria-selected=\"false\" aria-label=\"Slide 3\"></button>\n    </div>\n    <button class=\"mgl-hero-slider__arrow mgl-hero-slider__arrow--next\" type=\"button\" data-mgl-slider-next aria-label=\"Next banner slide\">→</button>\n  </div>\n  <div class=\"mgl-hero-slider__progress\" aria-hidden=\"true\"><span></span></div>\n</section>";}
+function rootHeroSlider(){return `
+<section class="mgl-hero-slider" id="home" aria-label="MetaGreyLabel brokerage solutions" aria-roledescription="carousel" tabindex="0">
+  <div class="mgl-hero-slider__track">
+    <article class="mgl-hero-slide mgl-hero-slide--launch is-active" data-mgl-slide="0" aria-hidden="false">
+      <div class="mgl-hero-slide__backdrop" aria-hidden="true"></div>
+      <div class="mgl-hero-slide__inner">
+        <div class="mgl-hero-slide__copy">
+          <span class="mgl-hero-slide__eyebrow">MetaTrader Grey Label</span>
+          <h1>Launch Your Forex Brokerage <span>in 2 Days</span></h1>
+          <p>Ready MT4/MT5 infrastructure, configured around your brand.</p>
+          <div class="mgl-hero-slide__actions">
+            <a class="trk-btn trk-btn--primary trk-btn--arrow" href="forex-grey-label/">Explore Grey Label <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="mgl-hero-slide__media">
+          <div class="mgl-hero-visual mgl-hero-visual--launch">
+            <img class="mgl-hero-visual__main" src="media/b-banner-home1-1.png" alt="MetaTrader brokerage launch visual" loading="eager" decoding="async">
+            <img class="mgl-hero-visual__float mgl-hero-visual__float--one" src="media/b-banner-home1-3.png" alt="" aria-hidden="true">
+            <img class="mgl-hero-visual__float mgl-hero-visual__float--two" src="media/b-banner-home1-4.png" alt="" aria-hidden="true">
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="mgl-hero-slide mgl-hero-slide--control" data-mgl-slide="1" aria-hidden="true">
+      <div class="mgl-hero-slide__backdrop" aria-hidden="true"></div>
+      <div class="mgl-hero-slide__inner mgl-hero-slide__inner--reverse">
+        <div class="mgl-hero-slide__copy">
+          <span class="mgl-hero-slide__eyebrow">Infrastructure + Control</span>
+          <h2>Run Your Brand With <span>More Control</span></h2>
+          <p>Broker operations without carrying the full server overhead.</p>
+          <div class="mgl-hero-slide__actions">
+            <a class="trk-btn trk-btn--primary" href="forex-white-label/vs-grey-label/">Compare Launch Models</a>
+          </div>
+        </div>
+        <div class="mgl-hero-slide__media">
+          <div class="mgl-hero-visual mgl-hero-visual--control">
+            <img class="mgl-hero-visual__main" src="media/b-banner-home2-1.png" alt="Brokerage infrastructure control visual" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="mgl-hero-slide mgl-hero-slide--stack" data-mgl-slide="2" aria-hidden="true">
+      <div class="mgl-hero-slide__backdrop" aria-hidden="true"></div>
+      <div class="mgl-hero-slide__inner">
+        <div class="mgl-hero-slide__copy">
+          <span class="mgl-hero-slide__eyebrow">Connected Brokerage Stack</span>
+          <h2>MT4, MT5, Liquidity &amp; CRM <span>Working Together</span></h2>
+          <p>One connected launch path from platform to client operations.</p>
+          <div class="mgl-hero-slide__actions">
+            <a class="trk-btn trk-btn--primary" href="forex-broker-turnkey/">Explore Turnkey Brokerage</a>
+          </div>
+        </div>
+        <div class="mgl-hero-slide__media">
+          <div class="mgl-hero-visual mgl-hero-visual--stack">
+            <img class="mgl-hero-visual__main" src="media/b-banner-home3-1.png" alt="Connected MT4 MT5 liquidity and CRM visual" loading="lazy" decoding="async">
+            <img class="mgl-hero-visual__float mgl-hero-visual__float--three" src="media/b-banner-home3-2.png" alt="" aria-hidden="true">
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="mgl-hero-slider__controls">
+    <button class="mgl-hero-slider__arrow mgl-hero-slider__arrow--prev" type="button" data-mgl-slider-prev aria-label="Previous banner slide">←</button>
+    <div class="mgl-hero-slider__dots" role="tablist" aria-label="Choose banner slide">
+      <button type="button" class="is-active" data-mgl-slider-dot="0" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+      <button type="button" data-mgl-slider-dot="1" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+      <button type="button" data-mgl-slider-dot="2" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+    </div>
+    <button class="mgl-hero-slider__arrow mgl-hero-slider__arrow--next" type="button" data-mgl-slider-next aria-label="Next banner slide">→</button>
+  </div>
+  <div class="mgl-hero-slider__progress" aria-hidden="true"><span></span></div>
+</section>
+
+<section class="mgl-banner-intro" aria-labelledby="mgl-banner-intro-title">
+  <div class="mgl-banner-intro__shell">
+    <div class="mgl-banner-intro__lead" data-aos="fade-up" data-aos-duration="750">
+      <span class="mgl-banner-intro__eyebrow">A complete brokerage stack</span>
+      <h2 id="mgl-banner-intro-title">Launch fast. Keep control. <span>Connect everything.</span></h2>
+      <p>MetaGreyLabel brings the detailed infrastructure behind the banner into one structured launch model—so your platform, execution, client operations and growth tools work together from day one.</p>
+    </div>
+
+    <div class="mgl-banner-intro__grid">
+      <article class="mgl-banner-intro__card" data-aos="fade-up" data-aos-duration="700">
+        <span class="mgl-banner-intro__number">01</span>
+        <h3>Launch your branded platform</h3>
+        <p>Start with ready MT4/MT5 infrastructure, manager access and the core setup configured around your brokerage instead of building server infrastructure from scratch.</p>
+        <a href="forex-grey-label/">Grey Label setup <span aria-hidden="true">↗</span></a>
+      </article>
+
+      <article class="mgl-banner-intro__card" data-aos="fade-up" data-aos-delay="80" data-aos-duration="700">
+        <span class="mgl-banner-intro__number">02</span>
+        <h3>Operate with broker-level control</h3>
+        <p>Manage groups, spreads, symbols, leverage and dealing operations while the underlying server environment remains professionally maintained.</p>
+        <a href="forex-white-label/vs-grey-label/">Compare launch models <span aria-hidden="true">↗</span></a>
+      </article>
+
+      <article class="mgl-banner-intro__card" data-aos="fade-up" data-aos-delay="160" data-aos-duration="700">
+        <span class="mgl-banner-intro__number">03</span>
+        <h3>Connect the full brokerage stack</h3>
+        <p>Bring platform, liquidity, CRM, KYC, payments and partner operations into one launch path designed to remove integration gaps before you go live.</p>
+        <a href="forex-broker-turnkey/">Explore turnkey brokerage <span aria-hidden="true">↗</span></a>
+      </article>
+    </div>
+
+    <div class="mgl-banner-intro__stack" aria-label="Connected brokerage technology">
+      <span>MT4</span><span>MT5</span><span>Liquidity</span><span>CRM</span><span>KYC</span><span>Payments</span><span>IB / Partners</span>
+    </div>
+  </div>
+</section>`;}
 
 function replaceRootBanner(html,markup){const start=html.indexOf('<section class="banner');if(start<0)return html;const end=html.indexOf('</section>',start);if(end<0)return html;return html.slice(0,start)+markup+html.slice(end+'</section>'.length);}
 
