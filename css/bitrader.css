@@ -317,3 +317,11 @@ html:not(.mgl-aos-active) [data-aos^="slide"][data-aos^="slide"]{
 @media(max-width:991.98px){.mgl-hero-slider__track{min-height:980px}.mgl-hero-slide{align-items:start}.mgl-hero-slide__inner,.mgl-hero-slide__inner--reverse{grid-template-columns:1fr;gap:18px;width:min(100% - 36px,760px);padding:78px 0 94px}.mgl-hero-slide__inner--reverse .mgl-hero-slide__copy,.mgl-hero-slide__inner--reverse .mgl-hero-slide__media{grid-column:auto;grid-row:auto}.mgl-hero-slide__media{order:2}.mgl-hero-visual{min-height:370px}.mgl-hero-visual__main{max-height:370px}.mgl-hero-slide__metrics{max-width:none}.mgl-hero-slider__controls{bottom:22px}}
 @media(max-width:575.98px){.mgl-hero-slider__track{min-height:900px}.mgl-hero-slide__inner,.mgl-hero-slide__inner--reverse{width:calc(100% - 28px);padding:56px 0 92px}.mgl-hero-slide h1,.mgl-hero-slide h2{font-size:clamp(42px,13vw,58px)}.mgl-hero-slide__copy>p{font-size:17px;line-height:1.58}.mgl-hero-slide__actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:26px}.mgl-hero-slide__actions .trk-btn{width:100%;justify-content:center}.mgl-hero-slide__proof,.mgl-hero-slide__stack-list{margin-top:24px}.mgl-hero-slide__metrics{grid-template-columns:1fr 1fr}.mgl-hero-slide__metrics div:last-child{grid-column:1/-1}.mgl-hero-visual{min-height:300px}.mgl-hero-visual__main{max-height:300px}.mgl-hero-visual__float--one{width:58px}.mgl-hero-visual__float--two,.mgl-hero-visual__float--three{width:52px}.mgl-hero-slider__controls{bottom:18px}.mgl-hero-slider__arrow{width:38px;height:38px}}
 @media(prefers-reduced-motion:reduce){.mgl-hero-slide,.mgl-hero-slide.is-active .mgl-hero-slide__copy>*,.mgl-hero-slide.is-active .mgl-hero-slide__media,.mgl-hero-visual__main,.mgl-hero-visual__float,.mgl-hero-slider__progress span{animation:none!important;transition:none!important}}
+
+/* MetaGreyLabel brand assets */
+.mgl-brand{min-width:0}
+.mgl-brand-logo{display:block;height:auto;max-width:100%}
+.mgl-brand-logo--header{width:clamp(168px,15vw,226px)}
+.mgl-brand-logo--footer{width:clamp(184px,18vw,248px)}
+.mgl-footer-brand .mgl-brand{display:inline-flex}
+@media(max-width:767.98px){.mgl-brand-logo--header{width:164px}.mgl-brand-logo--footer{width:190px}}

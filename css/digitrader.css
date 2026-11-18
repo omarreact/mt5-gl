@@ -18454,3 +18454,11 @@ body.light-version {
 #about,#services,#faq,#contact{scroll-margin-top:92px}
 @media(max-width:970px){.mgl-site-header .mgl-main-nav{max-height:calc(100dvh - 69px)}}
 @media(max-width:520px){.mgl-site-header .mgl-main-nav{max-height:calc(100dvh - 64px)}}
+
+/* MetaGreyLabel brand assets */
+.mgl-brand{min-width:0}
+.mgl-brand-logo{display:block;height:auto;max-width:100%}
+.mgl-brand-logo--header{width:clamp(168px,15vw,226px)}
+.mgl-brand-logo--footer{width:clamp(184px,18vw,248px)}
+.mgl-footer-brand .mgl-brand{display:inline-flex}
+@media(max-width:767.98px){.mgl-brand-logo--header{width:164px}.mgl-brand-logo--footer{width:190px}}
