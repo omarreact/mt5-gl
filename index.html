@@ -7,7 +7,6 @@
   <title>MetaGreyLabel — Homepage Designs</title>
   <style>
     :root{color-scheme:dark;--bg:#071016;--panel:#0d1a22;--line:#20333e;--text:#f2f8f7;--muted:#9db0b7;--accent:#00d094}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0,#123746 0,transparent 35%),var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif}.wrap{width:min(1180px,calc(100% - 36px));margin:auto}.hero{padding:90px 0 58px}.eyebrow{color:var(--accent);font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}h1{max-width:850px;margin:14px 0 20px;font-size:clamp(44px,7vw,82px);line-height:.98;letter-spacing:-.055em}p{max-width:680px;color:var(--muted);font-size:18px;line-height:1.7}.group{padding:28px 0 70px}.group-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:24px}.group h2{margin:0;font-size:32px}.group-head span{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{position:relative;min-height:310px;padding:28px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;transition:.25s}.card:before{content:"";position:absolute;inset:0 0 42% 0;background:var(--art);opacity:.85}.card:hover{transform:translateY(-6px);border-color:var(--accent)}.card small,.card h3,.card p,.card b{position:relative}.card small{color:var(--accent);font-weight:800}.card h3{margin:7px 0 4px;font-size:25px}.card p{margin:0;font-size:14px}.card b{position:absolute;right:22px;bottom:22px;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#04231c}.footer{padding:32px 0 50px;border-top:1px solid var(--line);color:var(--muted)}@media(max-width:850px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.hero{padding-top:60px}.grid{grid-template-columns:1fr}.group-head{display:block}.group-head span{display:block;margin-top:8px}}
-  
 /* Shared directory controls. The panels use the browser top layer, so the
    original animated and sticky headers cannot clip their contents. */
 .site-nav {
@@ -84,7 +83,10 @@
 .darker-blue .source-faq, .launch-check { color: white; }
 .stack-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-evenly; gap: 1rem; font-size: 1.15rem; font-weight: 650; padding: 1.5rem; }
 .welcome_area .welcome-content h1, .banner .banner__content-heading { font-size: clamp(2.4rem, 4.4vw, 4.4rem); line-height: 1.08; }
-.welcome_area:has(.welcome-content) { min-height: 100vh; height: auto; padding-block: 8rem 5rem; }
+.welcome_area:has(.welcome-content) { min-height: 100vh; height: auto !important; width: 100% !important; padding-block: 0; overflow: clip; }
+.welcome_area > .hero-content { position: relative !important; height: auto; min-height: inherit; padding: 7rem 0 4rem; display: grid; align-content: center; }
+.welcome_area .hero-content .h-100 { height: auto !important; }
+.welcome_area .hero-content .welcome-content { margin-top: 0 !important; }
 .token-distribution > .container > .row { clear: both; }
 .header-area .classy-navbar { gap: .4rem; }
 @media (max-width: 620px) {

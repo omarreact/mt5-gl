@@ -18327,7 +18327,10 @@ body.light-version {
 .darker-blue .source-faq, .launch-check { color: white; }
 .stack-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-evenly; gap: 1rem; font-size: 1.15rem; font-weight: 650; padding: 1.5rem; }
 .welcome_area .welcome-content h1, .banner .banner__content-heading { font-size: clamp(2.4rem, 4.4vw, 4.4rem); line-height: 1.08; }
-.welcome_area:has(.welcome-content) { min-height: 100vh; height: auto; padding-block: 8rem 5rem; }
+.welcome_area:has(.welcome-content) { min-height: 100vh; height: auto !important; width: 100% !important; padding-block: 0; overflow: clip; }
+.welcome_area > .hero-content { position: relative !important; height: auto; min-height: inherit; padding: 7rem 0 4rem; display: grid; align-content: center; }
+.welcome_area .hero-content .h-100 { height: auto !important; }
+.welcome_area .hero-content .welcome-content { margin-top: 0 !important; }
 .token-distribution > .container > .row { clear: both; }
 .header-area .classy-navbar { gap: .4rem; }
 @media (max-width: 620px) {

@@ -1239,5 +1239,3 @@ jQuery(document).ready(function(c){c(".dzsparallaxer---window-height").each(func
     })
 
 })(jQuery);
-
-
