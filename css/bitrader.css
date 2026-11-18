@@ -325,3 +325,14 @@ html:not(.mgl-aos-active) [data-aos^="slide"][data-aos^="slide"]{
 .mgl-brand-logo--footer{width:clamp(184px,18vw,248px)}
 .mgl-footer-brand .mgl-brand{display:inline-flex}
 @media(max-width:767.98px){.mgl-brand-logo--header{width:164px}.mgl-brand-logo--footer{width:190px}}
+
+/* MetaGreyLabel navigation inside the original Bitrader header/footer shell. */
+.mgl-bitrader-menu-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;padding:26px 30px}
+.mgl-bitrader-menu-column h3{margin:0 0 12px;color:var(--title-color);font-size:16px;font-weight:700}
+.mgl-bitrader-menu-column>a{display:block;padding:7px 0!important;color:var(--text-color)!important;font-size:14px!important;line-height:1.35;border:0!important}
+.mgl-bitrader-menu-column>a:hover,.mgl-bitrader-menu-column>a:focus-visible{padding-left:8px!important;color:var(--brand-color)!important}
+.header-wrapper .logo img{display:block;width:clamp(168px,15vw,226px);height:auto}
+.footer__about-logo img{display:block;width:clamp(184px,18vw,248px);height:auto}
+.footer__app-thumb img{width:22px;height:22px;object-fit:contain}
+@media(max-width:1199px){.mgl-bitrader-menu-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
+@media(max-width:991px){.mgl-bitrader-menu-grid{grid-template-columns:1fr;padding:16px 20px}.header-wrapper .logo img{width:164px}.mgl-bitrader-menu-column>a{padding:9px 0!important}.menu li .submenu .mgl-bitrader-menu-column>a{display:block}}
