@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://mt5-gl.pages.dev/sitemap.xml
