@@ -205,3 +205,8 @@ html:not(.mgl-aos-active) [data-aos^="slide"][data-aos^="slide"]{
 @media (prefers-reduced-motion:reduce){
   [data-aos][data-aos]{opacity:1!important;transform:none!important;transition:none!important;animation:none!important}
 }
+
+/* Meta Grey Label: compact, responsive SVG branding shared by every layout. */
+.mgl-brand .mgl-brand-image{display:block;width:218px;max-width:100%;height:auto;aspect-ratio:59/10;object-fit:contain}
+.mgl-site-footer .mgl-brand-image{width:232px}
+@media(max-width:630px){.mgl-site-header .mgl-brand-image{width:172px;max-width:46vw}}
