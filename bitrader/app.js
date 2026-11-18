@@ -16,20 +16,7 @@
   });
   document.body.append(theme);
 
-  const switcher = document.createElement("nav");
-  switcher.className = "mgl-design-switch";
-  const current = location.pathname.split("/").pop() || "index.html";
-  [["1","index.html"],["2","index-2.html"],["3","index-3.html"]].forEach(([label, href]) => {
-    const link = document.createElement("a"); link.href = href; link.textContent = label;
-    if (current === href) link.setAttribute("aria-current", "page");
-    switcher.append(link);
-  });
-  document.body.append(switcher);
 
-  const bar = document.querySelector(".header-bar");
-  const menu = document.querySelector(".menu-area > .menu");
-  if (bar && menu) bar.addEventListener("click", () => menu.classList.toggle("mgl-open"));
-  document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener("click", () => menu?.classList.remove("mgl-open")));
 })();
 
 document.querySelectorAll('form').forEach(form => form.addEventListener('submit', event => event.preventDefault()));

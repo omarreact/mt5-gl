@@ -1241,16 +1241,3 @@ jQuery(document).ready(function(c){c(".dzsparallaxer---window-height").each(func
 })(jQuery);
 
 
-document.addEventListener("DOMContentLoaded", function () {
-  const switcher = document.createElement("nav");
-  switcher.className = "mgl-design-switch";
-  const current = location.pathname.split("/").pop() || "index-demo1.html";
-  [["1","index-demo1.html"],["2","index-demo2.html"],["3","index-demo3.html"]].forEach(function (item) {
-    const link = document.createElement("a"); link.href = item[1]; link.textContent = item[0];
-    if (current === item[1]) link.setAttribute("aria-current", "page");
-    switcher.appendChild(link);
-  });
-  document.body.appendChild(switcher);
-});
-
-document.querySelectorAll('form').forEach(function(form){form.addEventListener('submit',function(event){event.preventDefault();});});
