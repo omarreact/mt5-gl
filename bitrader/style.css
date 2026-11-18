@@ -191,3 +191,17 @@ Tags: Crypto, Forex, and Stocks Trading Business
 
 /* Keep the unhighlighted part of the XML homepage title legible in all Bitrader themes. */
 .banner .banner__content-heading{color:var(--title-color,#0c263a)!important}
+
+
+/* AOS progressive enhancement: never hide XML content when JavaScript is unavailable.
+   The archived Bitrader CSS hid fade and zoom elements by default, but the static site
+   did not include the original Next.js AOS initializer. */
+html:not(.mgl-aos-active) [data-aos^="fade"][data-aos^="fade"],
+html:not(.mgl-aos-active) [data-aos^="zoom"][data-aos^="zoom"],
+html:not(.mgl-aos-active) [data-aos^="slide"][data-aos^="slide"]{
+  opacity:1!important;
+  transform:none!important;
+}
+@media (prefers-reduced-motion:reduce){
+  [data-aos][data-aos]{opacity:1!important;transform:none!important;transition:none!important;animation:none!important}
+}
