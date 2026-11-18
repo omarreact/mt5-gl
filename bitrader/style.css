@@ -253,3 +253,9 @@ html:not(.mgl-aos-active) [data-aos^="slide"][data-aos^="slide"]{
 @media(max-width:700px){.mgl-footer-main{grid-template-columns:1fr;gap:25px}.mgl-footer-inner{width:calc(100% - 36px)}.mgl-site-footer{padding-top:39px}}
 @media(max-width:520px){.mgl-header-inner{width:calc(100% - 26px);min-height:64px}.mgl-site-header .mgl-main-nav{left:-13px;right:-13px;max-height:calc(100vh - 64px)}.mgl-brand-name{font-size:20px}.mgl-site-header .mgl-mega-grid{grid-template-columns:1fr}.mgl-site-header .mgl-mega-title{flex-direction:column;align-items:flex-start;gap:4px}.mgl-site-footer .mgl-footer-links{gap:14px}.mgl-site-footer .mgl-footer-bottom{flex-direction:column;align-items:flex-start}}
 @media(prefers-reduced-motion:reduce){.mgl-site-header .mgl-nav-group[open] .mgl-nav-mega{animation:none!important}.mgl-site-header *, .mgl-site-footer *{transition:none!important}}
+
+/* Strong source-like accent on submenu hover, plus anchor and small-screen polish. */
+.mgl-site-header .mgl-link-group a:hover,.mgl-site-header .mgl-link-group a:focus-visible{box-shadow:inset 3px 0 0 var(--mgl-accent);background:var(--mgl-hover)!important;color:var(--mgl-accent)!important}
+#about,#services,#faq,#contact{scroll-margin-top:92px}
+@media(max-width:970px){.mgl-site-header .mgl-main-nav{max-height:calc(100dvh - 69px)}}
+@media(max-width:520px){.mgl-site-header .mgl-main-nav{max-height:calc(100dvh - 64px)}}
