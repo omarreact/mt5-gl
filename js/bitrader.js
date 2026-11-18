@@ -128,3 +128,50 @@
 })();
 
 document.querySelectorAll('form').forEach(form => form.addEventListener('submit', event => event.preventDefault()));
+
+
+/* Theme-aware hero carousel: no extra dependencies */
+(function(){
+ function init(){
+  var html=document.documentElement,buttons=Array.from(document.querySelectorAll('[data-mgl-theme-toggle]'));
+  var saved='light';
+  try{if(localStorage.getItem('mgl-theme')==='dark')saved='dark'}catch(_){}
+  function theme(value,persist){
+   var dark=value==='dark';
+   html.setAttribute('data-bs-theme',dark?'dark':'light');
+   buttons.forEach(function(b){b.setAttribute('aria-pressed',String(dark));b.setAttribute('aria-label',dark?'Switch to light theme':'Switch to dark theme');b.title=b.getAttribute('aria-label');b.textContent=dark?'☀':'☾'});
+   var meta=document.querySelector('meta[name="theme-color"]');
+   if(meta)meta.content=dark?'#091b1a':'#f4fffb';
+   if(persist){try{localStorage.setItem('mgl-theme',dark?'dark':'light')}catch(_){}}
+  }
+  theme(saved,false);
+  buttons.forEach(function(b){b.addEventListener('click',function(){theme(html.getAttribute('data-bs-theme')==='dark'?'light':'dark',true)})});
+  var root=document.querySelector('[data-mgl-slider]');
+  if(!root)return;
+  var slides=Array.from(root.querySelectorAll('[data-mgl-slide]')),dots=Array.from(root.querySelectorAll('[data-mgl-dot]'));
+  var prev=root.querySelector('[data-mgl-prev]'),next=root.querySelector('[data-mgl-next]'),pause=root.querySelector('[data-mgl-pause]'),count=root.querySelector('[data-mgl-count]');
+  var motion=typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var stopped=motion,index=0,timer=null,touch=null;
+  if(slides.length<2)return;
+  function refreshPause(){if(!pause)return;pause.setAttribute('aria-pressed',String(stopped));pause.setAttribute('aria-label',stopped?'Resume automatic rotation':'Pause automatic rotation');pause.innerHTML=stopped?'▶ <span>Play</span>':'Ⅱ <span>Pause</span>'}
+  function schedule(){if(timer!==null){clearTimeout(timer);timer=null}if(stopped||document.hidden||root.matches(':hover')||root.matches(':focus-within'))return;timer=setTimeout(function(){show(index+1)},6500)}
+  function show(target){
+   index=(target+slides.length)%slides.length;
+   slides.forEach(function(slide,i){var active=i===index;slide.classList.toggle('is-active',active);slide.setAttribute('aria-hidden',String(!active));if(active)slide.removeAttribute('inert');else slide.setAttribute('inert','')});
+   dots.forEach(function(dot,i){var active=i===index;dot.classList.toggle('is-active',active);dot.setAttribute('aria-current',String(active))});
+   if(count)count.textContent=String(index+1).padStart(2,'0');
+   schedule();
+  }
+  if(prev)prev.addEventListener('click',function(){show(index-1)});
+  if(next)next.addEventListener('click',function(){show(index+1)});
+  dots.forEach(function(dot,i){dot.addEventListener('click',function(){show(i)})});
+  if(pause)pause.addEventListener('click',function(){stopped=!stopped;refreshPause();schedule()});
+  root.addEventListener('keydown',function(e){if(e.altKey||e.ctrlKey||e.metaKey)return;if(e.key==='ArrowRight'){e.preventDefault();show(index+1)}if(e.key==='ArrowLeft'){e.preventDefault();show(index-1)}});
+  root.addEventListener('touchstart',function(e){if(e.touches&&e.touches.length===1)touch=[e.touches[0].clientX,e.touches[0].clientY]},{passive:true});
+  root.addEventListener('touchend',function(e){if(!touch||!e.changedTouches?.length)return;var dx=e.changedTouches[0].clientX-touch[0],dy=e.changedTouches[0].clientY-touch[1];touch=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.4)show(index+(dx<0?1:-1))},{passive:true});
+  root.addEventListener('mouseenter',schedule);root.addEventListener('mouseleave',schedule);root.addEventListener('focusin',schedule);root.addEventListener('focusout',function(){setTimeout(schedule,0)});
+  document.addEventListener('visibilitychange',schedule);
+  refreshPause();show(0);
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
