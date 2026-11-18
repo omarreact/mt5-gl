@@ -188,3 +188,6 @@ Tags: Crypto, Forex, and Stocks Trading Business
 
 /* Prevent decorative theme layers from creating unwanted horizontal scrolling. */
 @supports (overflow:clip) { html,body { overflow-x:clip; } }
+
+/* Keep the unhighlighted part of the XML homepage title legible in all Bitrader themes. */
+.banner .banner__content-heading{color:var(--title-color,#0c263a)!important}
