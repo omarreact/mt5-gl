@@ -1272,3 +1272,6 @@ jQuery(document).ready(function(c){c(".dzsparallaxer---window-height").each(func
     })
 
 })(jQuery);
+
+/* Showcase section interactions */
+(function(){function initShowcase(){document.querySelectorAll('[data-mgl-tabs]').forEach(function(root){var buttons=Array.from(root.querySelectorAll('[data-mgl-tab]')),panels=Array.from(root.querySelectorAll('[data-mgl-panel]'));buttons.forEach(function(btn){btn.addEventListener('click',function(){var id=btn.getAttribute('data-mgl-tab');buttons.forEach(function(b){b.classList.toggle('is-active',b===btn)});panels.forEach(function(p){p.classList.toggle('is-active',p.getAttribute('data-mgl-panel')===id)})})})});document.querySelectorAll('[data-mgl-tilt]').forEach(function(el){el.addEventListener('pointermove',function(e){if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;var r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform='perspective(900px) rotateX('+(-y*4)+'deg) rotateY('+(x*5)+'deg)'});el.addEventListener('pointerleave',function(){el.style.transform=''})})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initShowcase,{once:true});else initShowcase()})();
